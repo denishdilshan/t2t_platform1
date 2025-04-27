@@ -60,6 +60,7 @@ export const NavbarSection = (): JSX.Element => {
       <div className="flex items-center gap-4 bg-[url(/rectangle-52.svg)] bg-[100%_100%] h-full py-[11px] px-6">
         <Button
           className="w-[100px] h-[40px] rounded-[10px] text-white bg-[#0b3562] hover:bg-[#0b3562]/90"
+          onClick={() => navigate('/login')}
         >
           <span className="font-['Raleway',Helvetica] font-semibold text-base">
             Log In
@@ -67,6 +68,7 @@ export const NavbarSection = (): JSX.Element => {
         </Button>
         <Button
           className="w-[100px] h-[40px] rounded-[10px] text-white bg-[#0b3562] hover:bg-[#0b3562]/90"
+          onClick={() => navigate('/signup')}
         >
           <span className="font-['Raleway',Helvetica] font-semibold text-base">
             Sign Up
