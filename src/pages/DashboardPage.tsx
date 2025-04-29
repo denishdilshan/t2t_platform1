@@ -12,36 +12,24 @@ import {
   BookOpen,
   Users
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import projectData from '../data/projects.json';
 
 export const DashboardPage = () => {
+  const navigate = useNavigate();
+  // Filter active and completed projects
+  const activeProjects = projectData.projects.filter(p => p.status === 'In Progress' || p.status === 'Planning');
+  const completedProjects = projectData.projects.filter(p => p.status === 'Completed');
+
   const user = {
     name: 'John Doe',
     email: 'john.doe@example.com',
     role: 'Software Developer',
     skills: ['React', 'TypeScript', 'Node.js', 'Python'],
-    activeProjects: 2,
-    completedProjects: 5,
+    activeProjects: activeProjects.length,
+    completedProjects: completedProjects.length,
     experienceYears: 3
   };
-
-  const projects = [
-    {
-      id: 1,
-      title: 'E-commerce Platform Development',
-      status: 'In Progress',
-      progress: 65,
-      deadline: '2025-05-15',
-      team: 6
-    },
-    {
-      id: 2,
-      title: 'Mobile App UI/UX Design',
-      status: 'Planning',
-      progress: 25,
-      deadline: '2025-06-01',
-      team: 4
-    }
-  ];
 
   return (
     <div className="bg-[#f8f8f8] flex flex-col min-h-screen">
@@ -145,8 +133,8 @@ export const DashboardPage = () => {
               </div>
 
               <Button
-                className="w-full bg-[#0b3562] hover:bg-[#0b3562]/90"
-                onClick={() => {/* Add edit profile handler */}}
+                className="w-full bg-[#0b3562] text-white hover:bg-[#0b3562]/90"
+                onClick={() => navigate('/profile/personal-info')}
               >
                 Edit Profile
               </Button>
@@ -160,7 +148,7 @@ export const DashboardPage = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                {projects.map((project) => (
+                {activeProjects.map((project) => (
                   <div
                     key={project.id}
                     className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
@@ -176,8 +164,8 @@ export const DashboardPage = () => {
                       </div>
                       <Button
                         variant="outline"
-                        className="text-[#0b3562] border-[#0b3562]"
-                        onClick={() => {/* Add view project handler */}}
+                        className="text-[#0b3562] border-[#0b3562] hover:text-white hover:bg-[#0b3562]"
+                        onClick={() => navigate(`/project/${project.id}`)}
                       >
                         View Details
                       </Button>
@@ -210,11 +198,17 @@ export const DashboardPage = () => {
                     </div>
                   </div>
                 ))}
+
+                {activeProjects.length === 0 && (
+                  <div className="text-center text-gray-600 py-8">
+                    No active projects at the moment.
+                  </div>
+                )}
               </div>
 
               <Button
-                className="w-full mt-6 bg-[#0b3562] hover:bg-[#0b3562]/90"
-                onClick={() => {/* Add browse projects handler */}}
+                className="w-full mt-6 bg-[#0b3562] text-white hover:bg-[#0b3562]/90"
+                onClick={() => navigate('/projects')}
               >
                 Browse More Projects
               </Button>

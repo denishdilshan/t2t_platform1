@@ -8,109 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
-
-// Project data for mapping
-const projectsData = [
-  {
-    id: 1,
-    title: "ABC Car Rent Website Development",
-    image: "/project1.png",
-    type: "Website",
-    typeColor: "bg-[#fca9b89c]",
-    dotColor: "bg-[#f25470]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "03 Months"
-  },
-  {
-    id: 2,
-    title: "ABC Microfinance Software Development",
-    image: "/project1.png",
-    type: "Software",
-    typeColor: "bg-[#d9f2fb]",
-    dotColor: "bg-[#23bdee]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "06 Months"
-  },
-  {
-    id: 3,
-    title: "Employee Working Area Analyzer",
-    image: "/project1.png",
-    type: "App",
-    typeColor: "bg-[#f0e2c1]",
-    dotColor: "bg-[#f4c467]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "03 Months"
-  },
-  {
-    id: 4,
-    title: "ABC Car Rent Website Development",
-    image: "/project1.png",
-    type: "Website",
-    typeColor: "bg-[#fca9b89c]",
-    dotColor: "bg-[#f25470]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "03 Months"
-  },
-  {
-    id: 5,
-    title: "ABC Microfinance Software Development",
-    image: "/project1.png",
-    type: "Software",
-    typeColor: "bg-[#d9f2fb]",
-    dotColor: "bg-[#23bdee]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "06 Months"
-  },
-  {
-    id: 6,
-    title: "Employee Working Area Analyzer",
-    image: "/project1.png",
-    type: "App",
-    typeColor: "bg-[#f0e2c1]",
-    dotColor: "bg-[#f4c467]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "03 Months"
-  },
-  {
-    id: 7,
-    title: "ABC Car Rent Website Development",
-    image: "/project1.png",
-    type: "Website",
-    typeColor: "bg-[#fca9b89c]",
-    dotColor: "bg-[#f25470]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "03 Months"
-  },
-  {
-    id: 8,
-    title: "ABC Microfinance Software Development",
-    image: "/project1.png",
-    type: "Software",
-    typeColor: "bg-[#d9f2fb]",
-    dotColor: "bg-[#23bdee]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "06 Months"
-  },
-  {
-    id: 9,
-    title: "Employee Working Area Analyzer",
-    image: "/project1.png",
-    type: "App",
-    typeColor: "bg-[#f0e2c1]",
-    dotColor: "bg-[#f4c467]",
-    students: "06 Students",
-    hours: "8Hours/Day",
-    months: "03 Months"
-  }
-];
+import projectData from "../../../../data/projects.json";
 
 export const ProjectsSection = (): JSX.Element => {
   const navigate = useNavigate();
@@ -119,12 +17,16 @@ export const ProjectsSection = (): JSX.Element => {
     <section className="w-full py-10 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-        
-
+          <h2 className="font-['Raleway',Helvetica] font-bold text-[#0b3562] text-[40px] mb-4">
+            Our Projects
+          </h2>
+          <p className="font-['Raleway',Helvetica] text-[#7c97b5] text-[23px]">
+            Projects aimed at advancing technology and innovation
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
-          {projectsData.map((project) => (
+          {projectData.projects.map((project) => (
             <div key={project.id} className="relative">
               <Card className="relative z-10 bg-white rounded-[20px] border-[0.1px] border-solid border-black shadow-[0px_4px_4px_4px_#00000040]">
                 <CardContent className="p-0">
@@ -208,6 +110,7 @@ export const ProjectsSection = (): JSX.Element => {
 
             <Button
               variant="outline"
+              size="icon"
               className="w-[58px] h-[58px] rounded-[10px] border border-solid border-[#0b3562] text-[#0b3562]"
             >
               <span className="font-['Raleway',Helvetica] text-[44px]">2</span>
