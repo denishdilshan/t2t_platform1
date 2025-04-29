@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { NavbarSection } from '../screens/Project/sections/NavbarSection';
 import { FooterSection } from '../screens/Project/sections/FooterSection';
+import projectData from '../data/projects.json';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -79,33 +80,18 @@ export const HomePage = () => {
             <p className="text-lg text-gray-600 mt-2">View our recently completed and ongoing projects</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "ABC Car Rent Website Development",
-                image: "/project1.png",
-                type: "Website"
-              },
-              {
-                title: "ABC Microfinance Software Development",
-                image: "/project1.png",
-                type: "Software"
-              },
-              {
-                title: "Employee Working Area Analyzer",
-                image: "/project1.png",
-                type: "App"
-              }
-            ].map((project, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+            {projectData.projects.slice(0, 3).map((project) => (
+              <div key={project.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <span className="px-3 py-1 bg-[#fca9b89c] text-[#0B3562] rounded-full text-sm font-medium">
+                  <span className={`px-3 py-1 ${project.typeColor} text-[#0B3562] rounded-full text-sm font-medium`}>
                     {project.type}
                   </span>
-                  <h3 className="mt-4 text-xl font-['Raleway'] font-semibold text-[#0B3562]">{project.title}</h3>
-                  <button 
-                    onClick={() => navigate('/projects')}
-                    className="mt-4 w-full bg-[#0B3562] text-white py-2 rounded-lg hover:bg-[#0A2D54]"
+                  <h3 className="text-xl font-['Raleway'] font-semibold text-[#0b3562] mt-3 mb-2">{project.title}</h3>
+                  <p className="text-gray-600 mb-4">{project.description}</p>
+                  <button
+                    onClick={() => navigate(`/project/${project.id}`)}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#0b3562] hover:bg-[#0b3562]/90"
                   >
                     Read More
                   </button>
@@ -114,11 +100,11 @@ export const HomePage = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-            <button 
+            <button
               onClick={() => navigate('/projects')}
-              className="bg-[#0B3562] text-white px-8 py-3 rounded-lg font-['Raleway'] hover:bg-[#0A2D54]"
+              className="inline-flex items-center px-6 py-3 border-2 border-[#0b3562] text-[#0b3562] text-lg font-medium rounded-md hover:bg-[#0b3562] hover:text-white transition-colors"
             >
-              View More
+              View All Projects
             </button>
           </div>
         </div>

@@ -11,6 +11,7 @@ import { EducationPage } from './pages/profile/EducationPage';
 import { SkillsPage } from './pages/profile/SkillsPage';
 import { ProfileCompletionPage } from './pages/profile/ProfileCompletionPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { AboutPage } from './pages/AboutPage';
 import { useEffect } from 'react';
 
 // ScrollToTop component to handle scroll behavior
@@ -30,6 +31,7 @@ export const App = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<Project />} />
         <Route path="/submit-idea" element={<ClientFormPage />} />
         <Route path="/project/:id" element={<ProjectDetailsPage />} />

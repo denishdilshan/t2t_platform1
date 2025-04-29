@@ -2,101 +2,25 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { NavbarSection } from '../screens/Project/sections/NavbarSection';
 import { FooterSection } from '../screens/Project/sections/FooterSection';
 import { ClockIcon, UsersIcon, BuildingIcon, ListTodoIcon, LayersIcon, TargetIcon } from 'lucide-react';
-
-const projects = {
-  1: {
-    title: 'ABC Car Rent Website Development',
-    type: 'Website',
-    typeColor: 'bg-[#fca9b89c]',
-    dotColor: 'bg-[#f25470]',
-    description: 'A comprehensive car rental website with modern booking system and user-friendly interface.',
-    students: '06 Students',
-    hours: '8Hours/Day',
-    months: '03 Months',
-    image: '/project1.png',
-    features: [
-      'User-friendly booking interface',
-      'Real-time availability tracking',
-      'Secure payment integration',
-      'Customer review system',
-      'Admin dashboard for fleet management'
-    ],
-    technologies: [
-      'React.js',
-      'Node.js',
-      'PostgreSQL',
-      'Stripe Payment',
-      'AWS Services'
-    ]
-  },
-  2: {
-    title: 'ABC Microfinance Software Development',
-    type: 'Software',
-    typeColor: 'bg-[#d9f2fb]',
-    dotColor: 'bg-[#23bdee]',
-    description: 'Advanced microfinance management software with integrated accounting and loan tracking features.',
-    students: '06 Students',
-    hours: '8Hours/Day',
-    months: '06 Months',
-    image: '/rectangle-64-5.png',
-    features: [
-      'Loan management system',
-      'Automated payment tracking',
-      'Financial reporting',
-      'Customer management',
-      'Risk assessment tools'
-    ],
-    technologies: [
-      'Java Spring Boot',
-      'React.js',
-      'MySQL',
-      'Docker',
-      'Jenkins'
-    ]
-  },
-  3: {
-    title: 'Employee Working Area Analyzer',
-    type: 'App',
-    typeColor: 'bg-[#f0e2c1]',
-    dotColor: 'bg-[#f4c467]',
-    description: 'Smart workplace analytics tool for monitoring and optimizing employee workspace utilization.',
-    students: '06 Students',
-    hours: '8Hours/Day',
-    months: '03 Months',
-    image: '/rectangle-64-8.png',
-    features: [
-      'Real-time occupancy tracking',
-      'Heat maps for space utilization',
-      'Automated reporting',
-      'Capacity planning tools',
-      'Social distancing monitoring'
-    ],
-    technologies: [
-      'Python',
-      'TensorFlow',
-      'React Native',
-      'MongoDB',
-      'Azure Cloud'
-    ]
-  }
-};
+import projectData from '../data/projects.json';
 
 export const ProjectDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const projectId = id ? parseInt(id) : null;
-  const project = projectId && projectId > 0 && projectId <= 3 ? projects[projectId as keyof typeof projects] : null;
+  const project = projectData.projects.find(p => p.id === projectId);
 
   if (!project) {
     return (
       <div className="bg-[#f8f8f8] flex flex-col min-h-screen w-full">
         <NavbarSection />
-        <div className="flex-grow container mx-auto px-4 py-16">
-          <div className="bg-white rounded-[20px] shadow-lg p-8 text-center">
-            <h1 className="text-2xl font-semibold text-[#0b3562]">Project not found</h1>
+        <div className="flex-grow container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-[#0b3562] mb-4">Project Not Found</h1>
+            <p className="text-gray-600 mb-6">The project you're looking for doesn't exist.</p>
             <button
-              onClick={() => navigate('/')}
-              className="mt-8 px-6 py-3 rounded-[10px] bg-gradient-to-r from-[#0b3562] to-[#144b88] hover:from-[#0a2d54] hover:to-[#103e73] text-white font-['Raleway'] font-semibold"
+              onClick={() => navigate('/projects')}
+              className="px-6 py-2 bg-[#0b3562] text-white rounded-md hover:bg-[#0b3562]/90"
             >
               Back to Projects
             </button>
@@ -110,7 +34,7 @@ export const ProjectDetailsPage = () => {
   return (
     <div className="bg-[#f8f8f8] flex flex-col min-h-screen w-full">
       <NavbarSection />
-      <main className="flex-grow container mx-auto px-4 py-1">
+      <div className="flex-grow container mx-auto px-4 py-8">
         <div className="bg-white rounded-[20px] shadow-lg overflow-hidden p-8">
           
           <div className="relative mb-6">
@@ -140,21 +64,23 @@ export const ProjectDetailsPage = () => {
               <h3 className="text-gray-600 text-lg mb-2">Team</h3>
               <div className="flex items-center justify-center gap-2">
                 <UsersIcon className="w-7 h-7 text-[#0b3562]" />
-                <p className="font-['Raleway'] font-semibold text-[#0b3562] text-lg">6 members</p>
+                <p className="font-['Raleway'] font-semibold text-[#0b3562] text-lg">{project.students}</p>
               </div>
             </div>
+
             <div className="bg-white p-4 rounded-lg shadow-[0px_4px_16px_rgba(0,0,0,0.1)] hover:shadow-[0px_8px_24px_rgba(0,0,0,0.15)] transition-shadow duration-300 w-44 text-center">
               <h3 className="text-gray-600 text-lg mb-2">Duration</h3>
               <div className="flex items-center justify-center gap-2">
                 <ClockIcon className="w-7 h-7 text-[#0b3562]" />
-                <p className="font-['Raleway'] font-semibold text-[#0b3562] text-lg">6 months</p>
+                <p className="font-['Raleway'] font-semibold text-[#0b3562] text-lg">{project.months}</p>
               </div>
             </div>
+
             <div className="bg-white p-4 rounded-lg shadow-[0px_4px_16px_rgba(0,0,0,0.1)] hover:shadow-[0px_8px_24px_rgba(0,0,0,0.15)] transition-shadow duration-300 w-44 text-center">
               <h3 className="text-gray-600 text-lg mb-2">Company</h3>
               <div className="flex items-center justify-center gap-2">
                 <BuildingIcon className="w-7 h-7 text-[#0b3562]" />
-                <p className="font-['Raleway'] font-semibold text-[#0b3562] text-lg">T2T</p>
+                <p className="font-['Raleway'] font-semibold text-[#0b3562] text-lg">{project.company}</p>
               </div>
             </div>
           </div>
@@ -227,25 +153,12 @@ export const ProjectDetailsPage = () => {
                     <span className="w-2 h-2 mt-2 bg-[#0b3562] rounded-full mr-3"></span>
                     <span className="text-gray-600">Implement industry best practices and maintain high code quality</span>
                   </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 mt-2 bg-[#0b3562] rounded-full mr-3"></span>
-                    <span className="text-gray-600">Deliver a maintainable and scalable solution for long-term success</span>
-                  </li>
                 </ul>
               </div>
             </details>
           </div>
-
-          <div className="flex justify-center w-full mb-8">
-            <button
-              onClick={() => navigate('/')}
-              className="w-[300px] h-16 rounded-[10px] bg-gradient-to-r from-[#0b3562] to-[#144b88] hover:from-[#0a2d54] hover:to-[#103e73] text-white font-['Raleway'] font-semibold text-[23px]"
-            >
-              Expression of Interest
-            </button>
-          </div>
         </div>
-      </main>
+      </div>
       <FooterSection />
     </div>
   );
