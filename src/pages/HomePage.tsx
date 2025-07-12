@@ -140,7 +140,7 @@ export const HomePage = () => {
               ))}
             </div>
             <div className="lg:w-1/2 lg:ml-8"> {/* Reduced margin to shift image slightly to the left */}
-              <img src="/tp.png" alt="Training Programme" className="w-full rounded-lg shadow-lg" />
+              <img src="/White and Saffron Illustrated Sports T-shirt.png" alt="Training Programme" className="w-full rounded-lg shadow-lg" />
             </div>
           </div>
         </div>
